@@ -22,6 +22,10 @@
 #  * @author: Bindu Rao, IOTech
 #  * To use latest version(0.7.1) of core services
 #  * updated: Dec 11, 2018
+#  *
+#  * @author: Bindu Rao, IOTech
+#  * To use latest version(1.0.0) of core services
+#  * updated: Jun 19, 2019
 #  *******************************************************************************/
 
 version: '3'
@@ -45,7 +49,7 @@ services:
       - consul-data:/consul/data
       
   consul:
-    image: consul:1.4.0
+    image: consul:1.5.1
     ports:
       - "8400:8400"
       - "8500:8500"
@@ -65,7 +69,7 @@ services:
       - volume  
 
   config-seed:
-    image: edgexfoundry/docker-core-config-seed-go-arm64:0.7.1
+    image: edgexfoundry/docker-core-config-seed-go-arm64:1.0.0
     container_name: edgex-config-seed
     hostname: edgex-core-config-seed
     networks:
@@ -98,7 +102,7 @@ services:
       - volume
 
   logging:
-    image: edgexfoundry/docker-support-logging-go-arm64:0.7.1
+    image: edgexfoundry/docker-support-logging-go-arm64:1.0.0
     ports:
       - "48061:48061"
     container_name: edgex-support-logging
@@ -116,7 +120,7 @@ services:
       - volume
 
   notifications:
-    image: edgexfoundry/docker-support-notifications-go-arm64:0.7.1
+    image: edgexfoundry/docker-support-notifications-go-arm64:1.0.0
     ports:
       - "48060:48060"
     container_name: edgex-support-notifications
@@ -132,7 +136,7 @@ services:
       - logging
 
   metadata:
-    image: edgexfoundry/docker-core-metadata-go-arm64:0.7.1
+    image: edgexfoundry/docker-core-metadata-go-arm64:1.0.0
     ports:
       - "48081:48081"
     container_name: edgex-core-metadata
@@ -148,7 +152,7 @@ services:
       - logging
 
   data:
-    image: edgexfoundry/docker-core-data-go-arm64:0.7.1
+    image: edgexfoundry/docker-core-data-go-arm64:1.0.0
     ports:
       - "48080:48080"
       - "5563:5563"
@@ -165,7 +169,7 @@ services:
       - logging
 
   command:
-    image: edgexfoundry/docker-core-command-go-arm64:0.7.1
+    image: edgexfoundry/docker-core-command-go-arm64:1.0.0
     ports:
       - "48082:48082"
     container_name: edgex-core-command
@@ -181,7 +185,7 @@ services:
       - metadata
 
   export-client:
-    image: edgexfoundry/docker-export-client-go-arm64:0.7.1
+    image: edgexfoundry/docker-export-client-go-arm64:1.0.0
     ports:
       - "48071:48071"
     entrypoint:
@@ -206,7 +210,7 @@ services:
       - EXPORT_CLIENT_CONSUL_HOST=edgex-config-seed
 
   export-distro:
-    image: edgexfoundry/docker-export-distro-go-arm64:0.7.1
+    image: edgexfoundry/docker-export-distro-go-arm64:1.0.0
     ports:
       - "48070:48070"
       - "5566:5566"
@@ -234,7 +238,7 @@ services:
 #################################################################
 
   device-grove:
-    image: edgexfoundry/docker-device-grove-c-arm64:1.0.0
+    image: edgexfoundry/docker-device-grove-c-arm64:1.0.1
     ports:
       - "49991:49991"
     devices:
