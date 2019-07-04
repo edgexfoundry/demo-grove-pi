@@ -26,6 +26,11 @@
 #  * @author: Bindu Rao, IOTech
 #  * To use latest version(1.0.0) of core services
 #  * updated: Jun 19, 2019
+#
+#  * @author: Bindu Rao, IOTech
+#  * updated edgex-volume and edgex-mongo image version to 1.0.0
+#  * updated: July 04, 2019
+#
 #  *******************************************************************************/
 
 version: '3'
@@ -38,7 +43,7 @@ volumes:
 
 services:
   volume:
-    image: edgexfoundry/docker-edgex-volume-arm64:0.8.0
+    image: edgexfoundry/docker-edgex-volume-arm64:1.0.0
     container_name: edgex-files
     networks:
       - edgex-network
@@ -49,7 +54,7 @@ services:
       - consul-data:/consul/data
       
   consul:
-    image: consul:1.5.1
+    image: consul:1.3.1
     ports:
       - "8400:8400"
       - "8500:8500"
@@ -86,7 +91,7 @@ services:
       - consul
       
   mongo:
-    image: edgexfoundry/docker-edgex-mongo-arm64:0.8.0
+    image: edgexfoundry/docker-edgex-mongo-arm64:1.0.0
     ports:
       - "27017:27017"
     container_name: edgex-mongo
@@ -188,11 +193,6 @@ services:
     image: edgexfoundry/docker-export-client-go-arm64:1.0.0
     ports:
       - "48071:48071"
-    entrypoint:
-      - /export-client
-      - --consul=false
-      - --profile=docker 
-      - --confdir=/res 
     container_name: edgex-export-client
     hostname: edgex-export-client
     networks:
@@ -255,9 +255,6 @@ services:
     depends_on:
       - data
       - command
-
-
-
 
 #   device-bluetooth:
 #     image: nexus3.edgexfoundry.org:10004/docker-device-bluetooth:0.6.0
